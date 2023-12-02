@@ -1,0 +1,51 @@
+<div class="list-page-container">
+
+
+    <div class="tabel-container">
+
+        <div class="action-buttons-bar">
+          <div class="action-button action-button-circle" (click)="openFormClicked(null)" ><div><mat-icon class="bold-icon">add</mat-icon></div> </div>
+          <div class="action-button" (click)="listMenu =true"><div><mat-icon class="bold-icon">menu</mat-icon></div> </div>
+          <div class="action-button" (click)="listMenu =false"><div><mat-icon class="bold-icon">crop_square</mat-icon></div> </div>
+        </div>
+
+        <div class="search-bar-container">
+            <mat-icon>search</mat-icon> 
+            <input class="search-input" type="text" placeholder="Find by name" #searchInput (keydown)="onInputChange()">
+        </div>
+
+        <div class="tabel-header" *ngIf="listMenu">
+            <div class="header-row" >
+                <div class="tabel-cell tabel-cell-color"><span class="ellipsis">Color</span></div>
+                <div class="tabel-cell tabel-cell-name">
+                    <mat-icon *ngIf="ascending" (click)="ascendingClicked()">keyboard_arrow_up</mat-icon>
+                    <mat-icon *ngIf="!ascending" (click)="ascendingClicked()">keyboard_arrow_down</mat-icon>
+                    <span class="ellipsis">Name</span>
+                </div>
+                <div class="tabel-cell tabel-cell-created-date"><span class="ellipsis">Created Date</span></div>
+                <div class="tabel-cell tabel-cell-last-update"><span class="ellipsis">Last Update</span></div>
+                <div class="tabel-cell tabel-cell-created-by"><span class="ellipsis">Created By</span></div>
+            </div>
+        </div>
+
+        <div class="tabel-body"  [ngClass]="{'tile-wrapper': !listMenu}" *ngIf="list.length">
+            <div class="tabel-row table-row-hover" [ngClass]="{'tile': !listMenu}" *ngFor="let item of listToDisplay | paginate: { itemsPerPage: listMenu ? 8 : 20, currentPage: p }" (click)="openFormClicked(item)">
+                <div class="tabel-cell tabel-cell-color"> <div class="color-squre" [style.background-color]="item.color"></div></div>
+                <div class="tabel-cell tabel-cell-name"><span class="ellipsis">{{item.name}}</span></div>
+                <div class="tabel-cell tabel-cell-created-date" *ngIf="listMenu"><span class="ellipsis">{{item.createdDate |  date:'MM/dd/yyyy' }}</span></div>
+                <div class="tabel-cell tabel-cell-last-update"  *ngIf="listMenu"><span class="ellipsis">{{item.lastUpdate |  date:'MM/dd/yyyy'}}</span></div>
+                <div class="tabel-cell tabel-cell-created-by"  *ngIf="listMenu"><span class="ellipsis">{{item.createdBy}}</span></div>
+            </div>
+        </div>
+        <div class="pagination-containter">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div> 
+    </div>
+
+    <div class="form-container" *ngIf="openForm">
+        <app-card-form (formSubmit)="formEmitted($event)" [item]="selectedCard"></app-card-form>
+    </div>
+
+</div>
+
+

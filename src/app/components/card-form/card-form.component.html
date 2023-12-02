@@ -1,0 +1,35 @@
+<div class="card-form-containter">
+    <div class="top-action-buttons" >
+        <mat-icon (click)="closeForm()" class="clear-icon">clear</mat-icon>
+    </div>
+    <div class="title">{{title}}</div>
+
+    <form  [formGroup]="cardForm">
+        <section class="inputs-row">
+            <div class="input-wrapper">
+                <label for="name">Name:</label>
+                <input  class="inputs"  type="text" id="name" name="name" formControlName="name" placeholder="type tag name..." required>
+            </div>
+            <div class="input-wrapper flex-1">
+                <label for="color">color:</label>
+                <!-- <input type="text" id="color" name="color" [(ngModel)]="model.color" required> -->
+                <ngx-colors class="inputs" ngx-colors-trigger formControlName="color" ></ngx-colors>
+             
+            </div>
+
+        </section>
+        <section class="inputs-row">
+            <div class="input-wrapper">
+                <label for="description">Tag Description:</label>
+                <textarea   class="inputs textarea" placeholder="type text for description..." id="description" name="description" formControlName="description"></textarea>
+            </div>
+
+        </section>
+    
+        <section class="buttns-row">
+            <div  (click)="closeForm()" class="form-btn canceled-btn">Canceled</div>
+            <div  (click)="onSubmit()" type="submit" class="form-btn submit-btn">Submit</div>
+        </section>
+    </form>
+
+</div>
