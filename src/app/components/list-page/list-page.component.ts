@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListItem } from '../../interfaces';
 import { Observable, Subject, auditTime, debounceTime, distinctUntilChanged, of, switchMap, throttleTime } from 'rxjs';
@@ -25,6 +25,18 @@ export class ListPageComponent implements OnChanges {
   ascending: boolean= true;
   selectedCard!: ListItem;
   p: number = 1; // Current page
+  screenHeight= 0;
+  numberOfItemsInPage =8
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.screenHeight = window.innerHeight;
+
+    // size of card + margin = 70 
+    // -4 for "padding" 
+    this.numberOfItemsInPage  =  Math.round(window.innerHeight / 70) - 4;
+    console.log('  this.numberOfItemsInPage: ',   this.numberOfItemsInPage)
+  }
+
 
   ngOnInit() {
     this.searchSubject
@@ -60,7 +72,7 @@ export class ListPageComponent implements OnChanges {
     }
 
   }
-  
+
   openFormClicked(item: ListItem | null){
     if(item){
       this.selectedCard = item;

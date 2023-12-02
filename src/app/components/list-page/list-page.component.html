@@ -29,7 +29,7 @@
         </div>
 
         <div class="tabel-body"  [ngClass]="{'tile-wrapper': !listMenu}" *ngIf="list.length">
-            <div class="tabel-row table-row-hover" [ngClass]="{'tile': !listMenu}" *ngFor="let item of listToDisplay | paginate: { itemsPerPage: listMenu ? 8 : 20, currentPage: p }" (click)="openFormClicked(item)">
+            <div class="tabel-row table-row-hover" [ngClass]="{'tile': !listMenu}" *ngFor="let item of listToDisplay | paginate: { itemsPerPage: listMenu ? numberOfItemsInPage : 20, currentPage: p }" (click)="openFormClicked(item)">
                 <div class="tabel-cell tabel-cell-color"> <div class="color-squre" [style.background-color]="item.color"></div></div>
                 <div class="tabel-cell tabel-cell-name"><span class="ellipsis">{{item.name}}</span></div>
                 <div class="tabel-cell tabel-cell-created-date" *ngIf="listMenu"><span class="ellipsis">{{item.createdDate |  date:'MM/dd/yyyy' }}</span></div>
