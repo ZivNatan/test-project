@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.mainService.getData().subscribe((result) => {
       this.data = result;
-      console.log('data: ', this.data)
     });
   }
 }

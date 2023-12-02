@@ -32,8 +32,7 @@ export class ListPageComponent implements OnChanges {
         auditTime(300), // Debounce for 300 milliseconds
         distinctUntilChanged(), // Ignore repeated values
         switchMap(() => {
-          const searchString = this.searchInput?.nativeElement.value || ''
-          console.log('searchString: ', searchString)
+        const searchString = this.searchInput?.nativeElement.value || ''
         return  of(this.list.filter(item => item.name.toLowerCase().startsWith(searchString.toLowerCase())))
         })
       )
@@ -45,7 +44,6 @@ export class ListPageComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['list'].currentValue) {
       this.listToDisplay = this.list
-
     }
   }
 
@@ -55,7 +53,6 @@ export class ListPageComponent implements OnChanges {
       this.list = this.list.sort((a, b) => {
         return a.name.localeCompare(b.name);
       })
-
     }else {
       this.list = this.list.sort((a, b) => {
         return b.name.localeCompare(a.name);
@@ -63,6 +60,7 @@ export class ListPageComponent implements OnChanges {
     }
 
   }
+  
   openFormClicked(item: ListItem | null){
     if(item){
       this.selectedCard = item;
@@ -71,7 +69,6 @@ export class ListPageComponent implements OnChanges {
   }
 
   formEmitted(e:any){
-    debugger;
     if(e.type != 'canceled'){
       if(e.value.id){
         const id = e.value.id;

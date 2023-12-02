@@ -22,8 +22,6 @@ export class CardFormComponent {
   cardForm: FormGroup;
   constructor(private fb: FormBuilder) {
     this.cardForm = this.fb.group({
-      // Define your form controls here
-      // Example:
       id: ['', []],
       name: ['', Validators.required],
       color:  ['#000', Validators.required],
@@ -41,19 +39,13 @@ export class CardFormComponent {
 
   }
 
-  
   onSubmit() {
-    // Handle form submission logic here
     if (this.cardForm.valid) {
       this.formSubmit.emit({type: 'submit', value:  this.cardForm.value} );
     } else {
-      // Form is not valid, handle accordingly
       alert('Form is not valid');
     }
-  
   }
-
-
 
   closeForm(){
     this.formSubmit.emit({type: 'canceled'});

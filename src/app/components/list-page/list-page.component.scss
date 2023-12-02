@@ -3,19 +3,16 @@
 .list-page-container{
     background-color: #F2F6F9;
     max-width: 100%;
-    height:100%;
-    max-height: 100%;
     padding: 0 40px;
     display: flex;
+    height: auto;
+    min-height: 100vh;
 
     .form-container{
         position: fixed;
         right: 100px;
         top: 0;
     }
-
-
-
     .tabel-container, .tabel-body, .tabel-header {
         width: 100%;
         display: flex;
@@ -57,6 +54,9 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
         color: #fff;
         background-color: #749AAC;   
+    }
+    .action-button-circle:hover{
+        color: #fff;
     }
     .action-button-circle:hover{
         background-color: #0E4F6E;
@@ -143,8 +143,8 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        display: inline-block; /* Allow ellipsis to work for inline content */
-        max-width: 100%; /* Ensure the content doesn't overflow the container */
+        display: inline-block; 
+        max-width: 100%; 
       }
       .pagination-containter{
         width: 100%;
@@ -183,18 +183,16 @@
         &:hover {
             .color-squre{
                 transition: transform 0.3s ease;
-                transform: scale(1.2); /* Scales the text to 1.5 times on hover */
+                transform: scale(1.2); 
             }
             .tabel-cell-name{
                 .ellipsis{
                     transition: transform 0.3s ease;
                     transform: scale(1.2);
                 }
-               /* Scales the text to 1.5 times on hover */
+ 
             }
           
           }
-      }
-  
-    
+      }  
 }
